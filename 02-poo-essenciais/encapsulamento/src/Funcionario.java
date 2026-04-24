@@ -1,39 +1,39 @@
 public class Funcionario {
 
-    String nome;
-    int horasTrabalhadas;
-    private double valorHora;
-    double desconto;
+    private int id;
+    private String nome;
+    private double salario;
 
-    Funcionario(String nome, int horas, double valorHora, double desconto) {
+    public Funcionario(int id, String nome, double salario) {
+        this.id = id;
         this.nome = nome;
-        this.horasTrabalhadas = horas;
-        this.valorHora = valorHora;
-        this.desconto = desconto;
+        this.salario = salario;
     }
 
-    public void setValorHora(double valorHora) {
+    public int getId() {
+        return id;
+    }
 
-        if (valorHora < 0) {
-            System.out.println("Valor invalido");
-        } else {
-            this.valorHora = valorHora;
-        }
+    public String getNome() {
+        return nome;
+    }
+
+
+
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void atualizarSalario(double porcentagem) {
+
+        salario = salario
+                + (salario * porcentagem);
+
 
     }
 
-    double calcularSalarioBruto() {
-        return horasTrabalhadas * valorHora;
-    }
 
-    double calcularSalarioLiquido() {
-        return calcularSalarioBruto() - desconto;
-    }
 
-    void imprimirResumo() {
-        System.out.println("Funcionário: " + nome);
-        System.out.println("Salário bruto: R$ " + calcularSalarioBruto());
-        System.out.println("Desconto: R$ " + desconto);
-        System.out.println("Salário líquido: R$ " + calcularSalarioLiquido());
-    }
+
 }

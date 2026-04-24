@@ -13,30 +13,32 @@ public class SistemaBancario {
 
         System.out.println("Bem vindo");
 
-        System.out.println("Agência: ");
-        String agencia = leia.nextLine();
+        while (true) {
 
-        System.out.println("Conta: ");
-        String Numconta = leia.nextLine();
+            System.out.println("Agência: ");
+            String agencia = leia.nextLine();
 
-        System.out.println("Senha: ");
-        String senha = leia.nextLine();
+            System.out.println("Conta: ");
+            String Numconta = leia.nextLine();
 
-        // Autenticar!!!
-        Conta conta =
-                autenticar(agencia,
-                        Numconta,
-                        senha,
-                        contas);
+            System.out.println("Senha: ");
+            String senha = leia.nextLine();
 
-        if (conta != null) {
-            System.out.println("Bem vindo " + conta.getTitular());
-            mostrarMenu(conta);
-        } else {
-            System.out.println("Erro: Dados inválidos");
+            // Autenticar!!!
+            Conta conta =
+                    autenticar(agencia,
+                            Numconta,
+                            senha,
+                            contas);
+
+            if (conta != null) {
+                System.out.println("Bem vindo " + conta.getTitular());
+                mostrarMenu(conta);
+            } else {
+                System.out.println("Erro: Dados inválidos");
+            }
+
         }
-
-
 
 
 
@@ -58,15 +60,34 @@ public class SistemaBancario {
             switch (opcao)  {
 
                 case 1:
-
+                    double saldo = conta.verificarSaldo();
+                    System.out.println("Saldo atual: " + saldo);
+                    break;
                 case 2:
+                    System.out.println("Digite o valor do saque: ");
+                    double valor = leia.nextDouble();
+                    conta.sacar(valor);
+
+                    System.out.println("Saque realizado com sucesso! ");
+                    System.out.println("Seu saldo atual é " + conta.verificarSaldo());
+                    break;
+
 
                 case 3:
 
-                case 4:
-                    
+                    System.out.println("Digite o valor do deposito: ");
+                    double valorDeposito = leia.nextDouble();
+                    conta.depositar(valorDeposito);
 
+                    System.out.println("Deposito realizado com sucesso! ");
+                    System.out.println("Seu saldo atual é " + conta.verificarSaldo());
+
+                    break;
+                case 4:
+                    System.out.println("Saindo....");
+                    break;
                 default:
+                    System.out.println("Opção inválida - Tente novamente");
 
 
             }
